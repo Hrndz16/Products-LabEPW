@@ -25,14 +25,9 @@ public class Product {
     @Column(nullable = false, length = 50)
     private Integer stock;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private ProductStatus status = ProductStatus.BACKLOG;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private ProductPriority priority = ProductPriority.MEDIUM;
+
+
     private LocalDate dueDate;
-    private Instant completedAt;
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
     @Column(nullable = false)
@@ -90,36 +85,12 @@ public class Product {
         this.stock = stock;
     }
 
-    public ProductStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProductStatus status) {
-        this.status = status;
-    }
-
-    public ProductPriority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(ProductPriority priority) {
-        this.priority = priority;
-    }
-
     public LocalDate getDueDate() {
         return dueDate;
     }
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public Instant getCompletedAt() {
-        return completedAt;
-    }
-
-    public void setCompletedAt(Instant completedAt) {
-        this.completedAt = completedAt;
     }
 
     public Instant getCreatedAt() {

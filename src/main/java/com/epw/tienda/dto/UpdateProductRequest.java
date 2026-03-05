@@ -1,7 +1,5 @@
 package com.epw.tienda.dto;
 
-import com.epw.tienda.Entity.ProductPriority;
-import com.epw.tienda.Entity.ProductStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -18,8 +16,6 @@ public class UpdateProductRequest {
     private BigDecimal price;
     @Size(max = 50, message = "stock must be <= 50 chars")
     private Integer stock;
-    private ProductStatus status;
-    private ProductPriority priority;
     private LocalDate dueDate;
 
     public String getName() {
@@ -54,21 +50,6 @@ public class UpdateProductRequest {
         this.stock = stock;
     }
 
-    public ProductStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProductStatus status) {
-        this.status = status;
-    }
-
-    public ProductPriority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(ProductPriority priority) {
-        this.priority = priority;
-    }
 
     public LocalDate getDueDate() {
         return dueDate;

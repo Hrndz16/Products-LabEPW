@@ -1,7 +1,6 @@
 package com.epw.tienda.dto;
 
-import com.epw.tienda.Entity.ProductPriority;
-import com.epw.tienda.Entity.ProductStatus;
+
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -13,10 +12,7 @@ public class ProductResponse {
     private String description;
     private BigDecimal price;
     private Integer stock;
-    private ProductStatus status;
-    private ProductPriority priority;
     private LocalDate dueDate;
-    private Instant completedAt;
     private Instant createdAt;
     private Instant updatedAt;
 
@@ -60,21 +56,7 @@ public class ProductResponse {
         this.description = description;
     }
 
-    public ProductStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProductStatus status) {
-        this.status = status;
-    }
-
-    public ProductPriority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(ProductPriority priority) {
-        this.priority = priority;
-    }
+ 
 
     public LocalDate getDueDate() {
         return dueDate;
@@ -84,13 +66,6 @@ public class ProductResponse {
         this.dueDate = dueDate;
     }
 
-    public Instant getCompletedAt() {
-        return completedAt;
-    }
-
-    public void setCompletedAt(Instant completedAt) {
-        this.completedAt = completedAt;
-    }
 
     public Instant getCreatedAt() {
         return createdAt;
