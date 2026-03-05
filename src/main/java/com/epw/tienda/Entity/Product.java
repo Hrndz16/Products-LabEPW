@@ -2,46 +2,35 @@ package com.epw.tienda.Entity;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(length = 255)
+    @Column(name = "description", length = 255)
     private String description;
 
-    @Column(nullable = false, precision = 10, scale = 2, length = 50)
+    @Column(name = "price", nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "stock", nullable = false)
     private Integer stock;
-
-
-
-    private LocalDate dueDate;
-    @Column(nullable = false, updatable = false)
+    
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-    @Column(nullable = false)
-    private Instant updatedAt;
 
     @PrePersist
     void onCreate() {
-        Instant now = Instant.now();
-        this.updatedAt = now;
-    }
-
-    @PreUpdate
-    void onUpdate() {
-        this.updatedAt = Instant.now();
+        this.createdAt = Instant.now();
     }
 
     // Getters/Setters (si usas Lombok, puedes reemplazar por Getter/@Setter)
@@ -85,27 +74,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public Instant getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

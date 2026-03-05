@@ -2,9 +2,9 @@ package com.epw.tienda.dto;
 
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 
 public class ProductResponse {
     private Long id;
@@ -12,9 +12,8 @@ public class ProductResponse {
     private String description;
     private BigDecimal price;
     private Integer stock;
-    private LocalDate dueDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Bogota")
     private Instant createdAt;
-    private Instant updatedAt;
 
     public Long getId() {
         return id;
@@ -56,30 +55,11 @@ public class ProductResponse {
         this.description = description;
     }
 
- 
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-
     public Instant getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

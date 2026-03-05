@@ -28,7 +28,6 @@ public class ProductServiceImpl implements ProductService {
         a.setDescription(request.getDescription());
         a.setPrice(request.getPrice());
         a.setStock(request.getStock());
-        a.setDueDate(request.getDueDate());
         Product saved = repository.save(a);
         return toResponse(saved);
     }
@@ -55,7 +54,6 @@ public class ProductServiceImpl implements ProductService {
         a.setDescription(request.getDescription());
         a.setPrice(request.getPrice());
         a.setStock(request.getStock());
-        a.setDueDate(request.getDueDate());
         return toResponse(repository.save(a));
     }
 
@@ -88,9 +86,7 @@ public class ProductServiceImpl implements ProductService {
         r.setDescription(a.getDescription());
         r.setPrice(a.getPrice());
         r.setStock(a.getStock());
-        r.setDueDate(a.getDueDate());
         r.setCreatedAt(a.getCreatedAt());
-        r.setUpdatedAt(a.getUpdatedAt());
         return r;
     }
 }
