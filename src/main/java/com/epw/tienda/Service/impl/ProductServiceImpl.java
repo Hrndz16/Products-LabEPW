@@ -4,21 +4,24 @@ import com.epw.tienda.dto.ProductResponse;
 import com.epw.tienda.dto.CreateProductRequest;
 import com.epw.tienda.dto.UpdateProductRequest;
 import com.epw.tienda.Entity.Product;
-
 import com.epw.tienda.exception.ResourceNotFoundException;
 import com.epw.tienda.Repository.ProductRepository;
 import com.epw.tienda.Service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import com.epw.tienda.Entity.Category;
+import com.epw.tienda.Repository.CategoryRepository;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository repository;
+    private final CategoryRepository categoryRepository;
 
-    public ProductServiceImpl(ProductRepository repository) {
+    public ProductServiceImpl(ProductRepository repository, CategoryRepository categoryRepository) {
         this.repository = repository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -28,6 +31,13 @@ public class ProductServiceImpl implements ProductService {
         a.setDescription(request.getDescription());
         a.setPrice(request.getPrice());
         a.setStock(request.getStock());
+
+        if (request.getCategoryId() != null) {
+            Category category = categoryRepository.findById(request.getCategoryId())
+                    .orElseThrow(
+                            () -> new ResourceNotFoundException("Category " + request.getCategoryId() + " not found"));
+            a.setCategory(category);
+        }
         Product saved = repository.save(a);
         return toResponse(saved);
     }
@@ -87,6 +97,11 @@ public class ProductServiceImpl implements ProductService {
         r.setPrice(a.getPrice());
         r.setStock(a.getStock());
         r.setCreatedAt(a.getCreatedAt());
+        if (a.getCategory() != null) {
+            r.setCategoryId(a.getCategory().getId());
+            r.setCategoryName(a.getCategory().getName());
+        }
+
         return r;
     }
 }
